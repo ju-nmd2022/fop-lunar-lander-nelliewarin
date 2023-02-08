@@ -1,10 +1,12 @@
 background(10, 57, 84);
 noStroke();
 
-const x = 350;
+const x = 250;
 const y = 450;
-
-
+const rocketX = 100;
+const rocketY = 100;
+push();
+translate(rocketX, rocketY);
 // Wings
 push();
 translate(x, y - 85);
@@ -16,7 +18,7 @@ arc(x - 250, y - 450, 310, 180, 0, PI);
 pop();
 
 push();
-translate(250, y - 85);
+translate(x, y - 85);
 rotate(-2.1);
 fill(159, 0, 0);
 arc(x - 249, y -440, 310, 180, 0, PI);
@@ -82,6 +84,7 @@ fill(159, 0, 0);
 ellipse(x + 3, y - 20, 26, 170);
 fill(255, 0, 0);
 ellipse(x, y - 20, 20, 170);
+pop();
 
 
 
