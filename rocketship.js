@@ -83,4 +83,4 @@ function rocketship(x, y, s) {
   pop();
 }
 
-rocketship(100, 200, 0.5);
+rocketship(100, 100, 1);
