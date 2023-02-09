@@ -1,13 +1,31 @@
 background(25, 52, 65);
 noStroke();
 
+let starX = [];
+let starY = [];
+let starAlpha = [];
+
+for (let i = 0; i < 20; i++) {
+    const x = Math.floor(Math.random() * width);
+    const y = Math.floor(Math.random() * height);
+    const alpha = Math.random();
+
+    starX.push(x);
+    starY.push(y);
+    starAlpha.push(alpha);
+}
+
+console.log(starX);
+
 // ground
 fill(253, 234, 201);
 rect(0, 530, width, 200);
 
+
 // landing goal
-function landingGoal(x, y) {
+function landingGoal(x, y, s) {
   push();
+  scale(s);
   translate(x, y);
   fill(253, 234, 201);
   triangle(245, 510, 210, 530, 245, 530);
@@ -29,4 +47,4 @@ noStroke();
 fill(255, 0, 0);
 triangle(50, 500, 110, 515, 50, 550);
 
-landingGoal(0, 0);
+landingGoal(0, 0, 1);

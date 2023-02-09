@@ -35,6 +35,7 @@ function rocketship(x, y, s) {
   push();
   fill(245, 245, 245);
   translate(250, 450);
+  
   beginShape();
   vertex(-50, 0);
   bezierVertex(-100, -100, -100, -220, -50, -300);
