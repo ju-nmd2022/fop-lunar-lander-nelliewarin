@@ -119,28 +119,36 @@ function draw() {
   for (let index in starX) {
     fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
     ellipse(starX[index], starY[index], 2);
-    starAlpha[index] = starAlpha[index] + 0.02;
+    starAlpha[index] = starAlpha[index] + 0.05;
 
     // ground
     fill(254, 140, 49);
     ellipse(350, 620, 1100, 190);
     fill(254, 154, 75);
-    ellipse(350, 630, 1100, 190);
+    ellipse(350, 635, 1100, 190);
     fill(254, 169, 101);
-    ellipse(350, 640, 1100, 190);
-    fill(254, 183, 126);
     ellipse(350, 650, 1100, 190);
+    fill(254, 183, 126);
+    ellipse(350, 665, 1100, 190);
     fill(255, 198, 152);
-    ellipse(350, 660, 1100, 190);
-    fill(255, 212, 178);
-    ellipse(350, 670, 1100, 190);
-    fill(255, 226, 203);
     ellipse(350, 680, 1100, 190);
+    fill(255, 212, 178);
+    ellipse(350, 695, 1100, 190);
+    fill(255, 226, 203);
+    ellipse(350, 710, 1100, 190);
+    fill(255, 230, 210);
+    ellipse(350, 725, 1100, 190);
+    fill(255, 233, 216);
+    ellipse(350, 740, 1100, 190);
+    fill(255, 237, 223);
+    ellipse(350, 755, 1100, 190);
+    fill(255, 240, 229);
+    ellipse(350, 770, 1100, 190);
 
     //flag
     stroke(0);
     strokeWeight(5);
-    line(50, 500, 50, 630);
+    line(50, 500, 50, 620);
 
     strokeWeight(1);
     fill(126, 183, 126);
