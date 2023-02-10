@@ -14,10 +14,11 @@ function landingGoal(x, y, s) {
 }
 
 // rocket ship
-function rocketship(x, y, s) {
+function rocketship(x, y, s, rotation) {
   push();
   noStroke();
   translate(x, y);
+  rotate(rotation);
   scale(s);
   // Wings
 
@@ -113,6 +114,11 @@ for (let i = 0; i < 500; i++) {
 }
 
 // Callinging evrything :)
+
+let x = 250;
+let y = 0;
+let speed = 0;
+
 function draw() {
   background(25, 52, 65);
 
@@ -120,42 +126,52 @@ function draw() {
     fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
     ellipse(starX[index], starY[index], 2);
     starAlpha[index] = starAlpha[index] + 0.05;
+  }
 
-    // ground
-    fill(254, 140, 49);
-    ellipse(350, 620, 1100, 190);
-    fill(254, 154, 75);
-    ellipse(350, 635, 1100, 190);
-    fill(254, 169, 101);
-    ellipse(350, 650, 1100, 190);
-    fill(254, 183, 126);
-    ellipse(350, 665, 1100, 190);
-    fill(255, 198, 152);
-    ellipse(350, 680, 1100, 190);
-    fill(255, 212, 178);
-    ellipse(350, 695, 1100, 190);
-    fill(255, 226, 203);
-    ellipse(350, 710, 1100, 190);
-    fill(255, 230, 210);
-    ellipse(350, 725, 1100, 190);
-    fill(255, 233, 216);
-    ellipse(350, 740, 1100, 190);
-    fill(255, 237, 223);
-    ellipse(350, 755, 1100, 190);
-    fill(255, 240, 229);
-    ellipse(350, 770, 1100, 190);
+  // ground
+  fill(254, 140, 49);
+  ellipse(350, 620, 1100, 190);
+  fill(254, 154, 75);
+  ellipse(350, 635, 1100, 190);
+  fill(254, 169, 101);
+  ellipse(350, 650, 1100, 190);
+  fill(254, 183, 126);
+  ellipse(350, 665, 1100, 190);
+  fill(255, 198, 152);
+  ellipse(350, 680, 1100, 190);
+  fill(255, 212, 178);
+  ellipse(350, 695, 1100, 190);
+  fill(255, 226, 203);
+  ellipse(350, 710, 1100, 190);
+  fill(255, 230, 210);
+  ellipse(350, 725, 1100, 190);
+  fill(255, 233, 216);
+  ellipse(350, 740, 1100, 190);
+  fill(255, 237, 223);
+  ellipse(350, 755, 1100, 190);
+  fill(255, 240, 229);
+  ellipse(350, 770, 1100, 190);
 
-    //flag
-    stroke(0);
-    strokeWeight(5);
-    line(50, 500, 50, 620);
+  //flag
+  stroke(0);
+  strokeWeight(5);
+  line(50, 500, 50, 620);
 
-    strokeWeight(1);
-    fill(126, 183, 126);
-    triangle(50, 500, 110, 515, 50, 550);
-    noStroke();
+  strokeWeight(1);
+  fill(126, 183, 126);
+  triangle(50, 500, 110, 515, 50, 550);
+  noStroke();
 
-    landingGoal(250, 350, 0.6);
-    rocketship(50, 50, 0.3);
+  landingGoal(250, 350, 0.6);
+  rocketship(x, y, 0.3);
+
+  x = x + speed;
+
+  if (keyIsDown(39)) {
+    speed = 5;
+  } else if (keyIsDown(37)) {
+    speed = -5;
+  } else {
+    speed = 0;
   }
 }
