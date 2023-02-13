@@ -11,7 +11,6 @@ function landingGoal(x, y, s) {
   fill(255, 212, 178);
   ellipse(340, 520, 200, 50);
   pop();
-  
 }
 
 // rocket ship
@@ -199,17 +198,20 @@ function gameScreen() {
     }
   }
 
-  if (state === "game" && y >= 390 && x > 290 && x < 410) {
-      state = "win";    
-    } else if (y > 390) {
+  if (y >= 390 && x > 230 && x < 380 && velocity <= 5) {
     isGameActive = false;
-    speed = 0;
     timer = timer + 1;
     if (timer >= 30) {
       timer = 0;
-      state = "loose";
-
+      state = "win";
     }
+  } else if (y > 390) {
+    isGameActive = false;
+    timer = timer + 1;
+  }
+  if (timer >= 30) {
+    timer = 0;
+    state = "loose";
   }
 }
 
@@ -253,7 +255,7 @@ function draw() {
     rocketship(x, y, 0.3);
   } else if (state === "loose") {
     looseResultScreen();
-  } else if ((state === "win")) {
+  } else if (state === "win") {
     winResultScreen();
   }
 }
