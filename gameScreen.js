@@ -115,9 +115,12 @@ for (let i = 0; i < 500; i++) {
 
 // Callinging evrything :)
 
-let x = 250;
-let y = 0;
+let isGameActive = true;
+let x = 50;
+let y = -160;
 let speed = 0;
+let velocity = 1;
+let acceleration = 0.2;
 
 function draw() {
   background(25, 52, 65);
@@ -167,11 +170,26 @@ function draw() {
 
   x = x + speed;
 
-  if (keyIsDown(39)) {
-    speed = 5;
-  } else if (keyIsDown(37)) {
-    speed = -5;
-  } else {
+  if (isGameActive) {
+    y = y + velocity;
+    velocity = velocity + acceleration;
+
+    if (keyIsDown(39)) {
+      speed = 3;
+    } else if (keyIsDown(37)) {
+      speed = -3;
+    } else {
+      speed = 0;
+      
+
+      if (keyIsDown(38)) {
+        velocity = velocity - 0.5;
+      }
+    }
+  }
+
+  if (y > 390) {
+    isGameActive = false;
     speed = 0;
   }
 }
