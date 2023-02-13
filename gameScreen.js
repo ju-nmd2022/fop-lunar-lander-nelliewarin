@@ -200,6 +200,7 @@ function gameScreen() {
 
   if (y >= 390 && x > 230 && x < 380 && velocity <= 5) {
     isGameActive = false;
+    speed = 0;
     timer = timer + 1;
     if (timer >= 30) {
       timer = 0;
@@ -207,6 +208,8 @@ function gameScreen() {
     }
   } else if (y > 390) {
     isGameActive = false;
+  
+    speed = 0;
     timer = timer + 1;
   }
   if (timer >= 30) {
