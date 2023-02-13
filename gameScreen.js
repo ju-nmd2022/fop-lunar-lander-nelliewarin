@@ -120,6 +120,10 @@ function startButton(x, y, w, h) {
   text("Start Game", 135, 206);
 }
 
+//-------------------------------------------------------//
+//-------------------------------------------------------//
+//-------------------------------------------------------//
+
 function startScreen() {
   background(25, 52, 65);
   noStroke();
@@ -129,18 +133,7 @@ function startScreen() {
     ellipse(starX[index], starY[index], 2);
     starAlpha[index] = starAlpha[index] + 0.05;
   }
-
   startButton(100, 170, 200, 60);
-  if (
-    mouseIsPressed &&
-    mouseX > 100 &&
-    mouseX < 100 + 200 &&
-    mouseY > 170 &&
-    mouseY < 170 + 60
-  ) {
-    console.log("king");
-  }
-
 }
 
 function gameScreen() {
@@ -218,13 +211,28 @@ let speed = 0;
 let velocity = 1;
 let acceleration = 0.2;
 
-// function draw() {
-//   gameScreen();
-//   landingGoal(250, 350, 0.6);
-//   rocketship(x, y, 0.3);
-// }
+let startButtonIsClicked = false;
+let state = "start";
+
+function mousePressed() {
+  if (mouseX > 100 && mouseX < 100 + 200 && mouseY > 170 && mouseY < 170 + 60) {
+    startButtonIsClicked = true;
+    state = "game";
+  }
+}
+
+//-------------------------------------------------------//
+//-------------------------------------------------------//
+//-------------------------------------------------------//
 
 function draw() {
-  startScreen();
-  rocketship(250, 100, 0.8);
+  if (state === "start") {
+    startScreen();
+    rocketship(250, 100, 0.8);
+  
+  } else if (state === "game") {
+    gameScreen();
+    landingGoal(250, 350, 0.6);
+    rocketship(x, y, 0.3);
+  }
 }
