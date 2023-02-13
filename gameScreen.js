@@ -14,11 +14,10 @@ function landingGoal(x, y, s) {
 }
 
 // rocket ship
-function rocketship(x, y, s, rotation) {
+function rocketship(x, y, s) {
   push();
   noStroke();
   translate(x, y);
-  rotate(rotation);
   scale(s);
   // Wings
 
@@ -95,7 +94,6 @@ function rocketship(x, y, s, rotation) {
   ellipse(253, 430, 26, 170);
   fill(255, 0, 0);
   ellipse(250, 430, 20, 170);
-
   pop();
 }
 
@@ -113,16 +111,39 @@ for (let i = 0; i < 500; i++) {
   starAlpha.push(alpha);
 }
 
-// Callinging evrything :)
+function startButton(x, y, w, h) {
+  fill(0, 0, 0);
+  rect(x, y, w, h);
 
-let isGameActive = true;
-let x = 50;
-let y = -160;
-let speed = 0;
-let velocity = 1;
-let acceleration = 0.2;
+  fill(255, 255, 255);
+  textSize(25);
+  text("Start Game", 135, 206);
+}
 
-function draw() {
+function startScreen() {
+  background(25, 52, 65);
+  noStroke();
+
+  for (let index in starX) {
+    fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
+    ellipse(starX[index], starY[index], 2);
+    starAlpha[index] = starAlpha[index] + 0.05;
+  }
+
+  startButton(100, 170, 200, 60);
+  if (
+    mouseIsPressed &&
+    mouseX > 100 &&
+    mouseX < 100 + 200 &&
+    mouseY > 170 &&
+    mouseY < 170 + 60
+  ) {
+    console.log("king");
+  }
+
+}
+
+function gameScreen() {
   background(25, 52, 65);
 
   for (let index in starX) {
@@ -165,9 +186,6 @@ function draw() {
   triangle(50, 500, 110, 515, 50, 550);
   noStroke();
 
-  landingGoal(250, 350, 0.6);
-  rocketship(x, y, 0.3);
-
   x = x + speed;
 
   if (isGameActive) {
@@ -180,7 +198,6 @@ function draw() {
       speed = -3;
     } else {
       speed = 0;
-      
 
       if (keyIsDown(38)) {
         velocity = velocity - 0.5;
@@ -192,4 +209,22 @@ function draw() {
     isGameActive = false;
     speed = 0;
   }
+}
+
+let isGameActive = true;
+let x = 50;
+let y = -160;
+let speed = 0;
+let velocity = 1;
+let acceleration = 0.2;
+
+// function draw() {
+//   gameScreen();
+//   landingGoal(250, 350, 0.6);
+//   rocketship(x, y, 0.3);
+// }
+
+function draw() {
+  startScreen();
+  rocketship(250, 100, 0.8);
 }
