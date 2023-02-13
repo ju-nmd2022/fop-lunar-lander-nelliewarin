@@ -11,6 +11,7 @@ function landingGoal(x, y, s) {
   fill(255, 212, 178);
   ellipse(340, 520, 200, 50);
   pop();
+  
 }
 
 // rocket ship
@@ -198,10 +199,26 @@ function gameScreen() {
     }
   }
 
-  if (y > 390) {
+  if (state === "game" && y >= 390 && x > 290 && x < 410) {
+      state = "win";    
+    } else if (y > 390) {
     isGameActive = false;
     speed = 0;
+    timer = timer + 1;
+    if (timer >= 30) {
+      timer = 0;
+      state = "loose";
+
+    }
   }
+}
+
+function looseResultScreen() {
+  background(255, 0, 0);
+}
+
+function winResultScreen() {
+  background(0, 255, 0);
 }
 
 let isGameActive = true;
@@ -213,6 +230,7 @@ let acceleration = 0.2;
 
 let startButtonIsClicked = false;
 let state = "start";
+let timer = 0;
 
 function mousePressed() {
   if (mouseX > 100 && mouseX < 100 + 200 && mouseY > 170 && mouseY < 170 + 60) {
@@ -229,10 +247,13 @@ function draw() {
   if (state === "start") {
     startScreen();
     rocketship(250, 100, 0.8);
-  
   } else if (state === "game") {
     gameScreen();
     landingGoal(250, 350, 0.6);
     rocketship(x, y, 0.3);
+  } else if (state === "loose") {
+    looseResultScreen();
+  } else if ((state === "win")) {
+    winResultScreen();
   }
 }
