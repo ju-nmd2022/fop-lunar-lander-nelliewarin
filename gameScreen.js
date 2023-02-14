@@ -143,6 +143,20 @@ function startScreen() {
     starAlpha[index] = starAlpha[index] + 0.05;
   }
   startButton(100, 170, 200, 60);
+
+  // Instructions how to play
+  fill(255, 255, 255);
+  textSize(20);
+  text("How to play", 150, 275);
+  textSize(15);
+  text("up", 192, 340);
+  text("left", 120, 340);
+  text("right", 260, 340);
+  noFill();
+  stroke(255, 255, 255);
+  triangle(200, 295, 190, 310, 210, 310);
+  triangle(140, 295, 140, 310, 120, 302);
+  triangle(260, 295, 260, 310, 280, 302);
 }
 
 function gameScreen() {
