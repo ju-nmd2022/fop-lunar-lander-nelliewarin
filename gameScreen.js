@@ -120,6 +120,15 @@ function startButton(x, y, w, h) {
   text("Start Game", 135, 206);
 }
 
+function playAgainButton(x, y, w, h) {
+  fill(0, 0, 0);
+  rect(x, y, w, h);
+
+  fill(255, 255, 255);
+  textSize(25);
+  text("Play Again", 135, 206);
+}
+
 //-------------------------------------------------------//
 //-------------------------------------------------------//
 //-------------------------------------------------------//
@@ -208,7 +217,7 @@ function gameScreen() {
     }
   } else if (y > 390) {
     isGameActive = false;
-  
+
     speed = 0;
     timer = timer + 1;
   }
@@ -220,10 +229,12 @@ function gameScreen() {
 
 function looseResultScreen() {
   background(255, 0, 0);
+  playAgainButton(100, 170, 200, 60);
 }
 
 function winResultScreen() {
   background(0, 255, 0);
+  playAgainButton(100, 170, 200, 60);
 }
 
 let isGameActive = true;
@@ -234,12 +245,27 @@ let velocity = 1;
 let acceleration = 0.2;
 
 let startButtonIsClicked = false;
+let playAgainButtonIsClicked = false;
 let state = "start";
+
 let timer = 0;
 
 function mousePressed() {
   if (mouseX > 100 && mouseX < 100 + 200 && mouseY > 170 && mouseY < 170 + 60) {
     startButtonIsClicked = true;
+    state = "game";
+  }
+}
+
+function mousePressed() {
+  if (mouseX > 100 && mouseX < 100 + 200 && mouseY > 170 && mouseY < 170 + 60) {
+    startButtonIsClicked = true;
+    isGameActive = true;
+    x = 50;
+    y = -160;
+    speed = 0;
+    velocity = 1;
+    acceleration = 0.2;
     state = "game";
   }
 }
