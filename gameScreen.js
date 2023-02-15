@@ -19,8 +19,8 @@ function rocketship(x, y, s) {
   noStroke();
   translate(x, y);
   scale(s);
-  // Wings
 
+  // Wings
   push();
   translate(250, 365);
   rotate(2.1);
@@ -97,6 +97,74 @@ function rocketship(x, y, s) {
   pop();
 }
 
+function fire(fireX, fireY, fireS) {
+  push();
+  translate(fireX, fireY);
+  scale(fireS);
+  //-------------------red-----------------------//
+  noStroke();
+  fill(255, 77, 31);
+
+  push();
+  translate(200, 200);
+
+  push();
+  rotate(0.8);
+  arc(0, 0, 200, 150, 0, PI);
+  pop();
+
+  push();
+  rotate(-0.8);
+  arc(35, 35, 200, 150, 0, PI);
+  pop();
+  pop();
+
+  triangle(120, 200, 225, 30, 330, 200);
+  ellipse(220, 200, 60);
+
+  //-------------------orange-----------------------//
+  fill(255, 133, 31);
+
+  push();
+  translate(200, 200);
+
+  push();
+  rotate(0.8);
+  arc(0, 20, 130, 80, 0, PI);
+  pop();
+
+  push();
+  rotate(-0.8);
+  arc(30, 50, 130, 80, 0, PI);
+  pop();
+  pop();
+
+  triangle(160, 200, 225, 70, 290, 200);
+  ellipse(220, 215, 110);
+
+  //-------------------yellow-----------------------//
+
+  fill(255, 195, 31);
+
+  push();
+  translate(200, 200);
+
+  push();
+  rotate(0.6);
+  arc(5, 25, 80, 55, 0, PI);
+  pop();
+
+  push();
+  rotate(-0.6);
+  arc(30, 47, 80, 55, 0, PI);
+  pop();
+  pop();
+
+  triangle(185, 230, 225, 120, 260, 230);
+  ellipse(220, 237, 100, 40);
+  pop();
+}
+
 let starX = [];
 let starY = [];
 let starAlpha = [];
@@ -126,7 +194,7 @@ function playAgainButton(x, y, w, h) {
 
   fill(255, 255, 255);
   textSize(25);
-  text("Play Again", 135, 206);
+  text("Play Again", 250, 55);
 }
 
 //-------------------------------------------------------//
@@ -221,7 +289,7 @@ function gameScreen() {
     }
   }
 
-  if (y >= 390 && x > 230 && x < 380 && velocity <= 5) {
+  if (y >= 380 && x > 230 && x < 380 && velocity <= 5) {
     isGameActive = false;
     speed = 0;
     timer = timer + 1;
@@ -242,13 +310,43 @@ function gameScreen() {
 }
 
 function looseResultScreen() {
-  background(255, 0, 0);
-  playAgainButton(100, 170, 200, 60);
+  background(25, 52, 65);
+
+  for (let index in starX) {
+    fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
+    ellipse(starX[index], starY[index], 2);
+    starAlpha[index] = starAlpha[index] + 0.05;
+  }
+
+  fill(254, 169, 101);
+  ellipse(350, 400, 2100, 600);
+
+  push();
+  translate(200, 200);
+  rotate(1);
+  rocketship(150, -300, 0.8);
+  pop();
+
+  fill(0);
+  textSize(25);
+  text("Well, that didn´t go as planned...", 30, 200);
+  textSize(15);
+  text("We probably should´ve demanded a license or something.", 30, 240);
+  text("Better luck next time I guess :`)", 30, 270);
+  textSize(10);
+  text("Who´s gonna tell his wife and kids..?", 450, 650);
+
+  playAgainButton(210, 20, 200, 60);
 }
 
 function winResultScreen() {
   background(0, 255, 0);
-  playAgainButton(100, 170, 200, 60);
+
+  fill(0);
+  textSize(25);
+  text("idiot", 20, 200);
+
+  playAgainButton(210, 20, 200, 60);
 }
 
 let isGameActive = true;
@@ -265,28 +363,36 @@ let state = "start";
 let timer = 0;
 
 function mousePressed() {
-  if (mouseX > 100 && mouseX < 100 + 200 && mouseY > 170 && mouseY < 170 + 60) {
-    startButtonIsClicked = true;
-    state = "game";
+  if (state === "start") {
+    if (
+      mouseX > 100 &&
+      mouseX < 100 + 200 &&
+      mouseY > 170 &&
+      mouseY < 170 + 60
+    ) {
+      startButtonIsClicked = true;
+      state = "game";
+    }
+  }
+  if (state === "win" || state === "loose") {
+    if (mouseX > 210 && mouseX < 210 + 200 && mouseY > 20 && mouseY < 20 + 60) {
+      playAgainButtonIsClicked = true;
+      isGameActive = true;
+      frameRate(30);
+      x = 50;
+      y = -160;
+      speed = 0;
+      velocity = 1;
+      acceleration = 0.2;
+      state = "game";
+    }
   }
 }
 
-function mousePressed() {
-  if (mouseX > 100 && mouseX < 100 + 200 && mouseY > 170 && mouseY < 170 + 60) {
-    startButtonIsClicked = true;
-    isGameActive = true;
-    x = 50;
-    y = -160;
-    speed = 0;
-    velocity = 1;
-    acceleration = 0.2;
-    state = "game";
-  }
-}
-
 //-------------------------------------------------------//
 //-------------------------------------------------------//
 //-------------------------------------------------------//
+let fireS = 0.4;
 
 function draw() {
   if (state === "start") {
@@ -298,6 +404,19 @@ function draw() {
     rocketship(x, y, 0.3);
   } else if (state === "loose") {
     looseResultScreen();
+    fire(420, 480, fireS - 0.1);
+    fire(400, 500, fireS - 0.2);
+    fire(400, 100, fireS - 0.05);
+    fire(20, 320, fireS + 0.05);
+    fire(0, 360, fireS - 0.1);
+    fire(60, 400, fireS - 0.2);
+
+    frameRate(10);
+    if (fireS < 0.5) {
+      fireS = fireS + 0.01;
+    } else if (fireS > 0.5) {
+      fireS = fireS - 0.01;
+    }
   } else if (state === "win") {
     winResultScreen();
   }
