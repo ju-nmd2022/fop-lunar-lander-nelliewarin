@@ -101,65 +101,52 @@ function fire(fireX, fireY, fireS) {
   push();
   translate(fireX, fireY);
   scale(fireS);
-  //-------------------red-----------------------//
+  //red
   noStroke();
   fill(255, 77, 31);
-
   push();
   translate(200, 200);
-
   push();
   rotate(0.8);
   arc(0, 0, 200, 150, 0, PI);
   pop();
-
   push();
   rotate(-0.8);
   arc(35, 35, 200, 150, 0, PI);
   pop();
   pop();
-
   triangle(120, 200, 225, 30, 330, 200);
   ellipse(220, 200, 60);
 
-  //-------------------orange-----------------------//
+  //orange
   fill(255, 133, 31);
-
   push();
   translate(200, 200);
-
   push();
   rotate(0.8);
   arc(0, 20, 130, 80, 0, PI);
   pop();
-
   push();
   rotate(-0.8);
   arc(30, 50, 130, 80, 0, PI);
   pop();
   pop();
-
   triangle(160, 200, 225, 70, 290, 200);
   ellipse(220, 215, 110);
 
-  //-------------------yellow-----------------------//
-
+  //yellow
   fill(255, 195, 31);
-
   push();
   translate(200, 200);
-
   push();
   rotate(0.6);
   arc(5, 25, 80, 55, 0, PI);
   pop();
-
   push();
   rotate(-0.6);
   arc(30, 47, 80, 55, 0, PI);
   pop();
   pop();
-
   triangle(185, 230, 225, 120, 260, 230);
   ellipse(220, 237, 100, 40);
   pop();
@@ -210,6 +197,7 @@ function startScreen() {
     ellipse(starX[index], starY[index], 2);
     starAlpha[index] = starAlpha[index] + 0.05;
   }
+  rocketship(250, 100, 0.8);
   startButton(100, 170, 200, 60);
 
   // Instructions how to play
@@ -228,6 +216,7 @@ function startScreen() {
 }
 
 function gameScreen() {
+  noStroke();
   background(25, 52, 65);
 
   for (let index in starX) {
@@ -261,14 +250,13 @@ function gameScreen() {
   ellipse(350, 770, 1100, 190);
 
   //flag
-  stroke(0);
-  strokeWeight(5);
-  line(50, 500, 50, 620);
+  // stroke(0);
+  // strokeWeight(5);
+  // line(50, 500, 50, 620);
 
-  strokeWeight(1);
-  fill(126, 183, 126);
-  triangle(50, 500, 110, 515, 50, 550);
-  noStroke();
+  // strokeWeight(1);
+  // fill(126, 183, 126);
+  // triangle(50, 500, 110, 515, 50, 550);
 
   x = x + speed;
 
@@ -331,8 +319,10 @@ function looseResultScreen() {
   textSize(25);
   text("Well, that didn´t go as planned...", 30, 200);
   textSize(15);
-  text("We probably should´ve demanded a license or something.", 30, 240);
   text("Better luck next time I guess :`)", 30, 270);
+
+  fill(0, 0, 0, 100);
+  text("We probably should´ve demanded a license or something.", 30, 240);
   textSize(10);
   text("Who´s gonna tell his wife and kids..?", 450, 650);
 
@@ -340,12 +330,38 @@ function looseResultScreen() {
 }
 
 function winResultScreen() {
-  background(0, 255, 0);
+  noStroke();
+  background(25, 52, 65);
+
+  for (let index in starX) {
+    fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
+    ellipse(starX[index], starY[index], 2);
+    starAlpha[index] = starAlpha[index] + 0.05;
+  }
+
+  fill(254, 169, 101);
+  ellipse(350, 400, 2100, 600);
+
+  fill(191, 105, 37);
+  ellipse(450, 602, 260, 80);
+
+  fill(255, 212, 178);
+  ellipse(450, 600, 250, 70);
+
+  rocketship(250, 220, 0.8);
 
   fill(0);
   textSize(25);
-  text("idiot", 20, 200);
-
+  text("Landing successful.", 30, 200);
+  textSize(15);
+  fill(0, 0, 0, 100);
+  text(
+    "As it should be, it´s literally your job. Get over yourself...",
+    30,
+    240
+  );
+  textSize(10);
+  text("Yay. I didn´t die.", 540, 420);
   playAgainButton(210, 20, 200, 60);
 }
 
@@ -397,7 +413,6 @@ let fireS = 0.4;
 function draw() {
   if (state === "start") {
     startScreen();
-    rocketship(250, 100, 0.8);
   } else if (state === "game") {
     gameScreen();
     landingGoal(250, 350, 0.6);
