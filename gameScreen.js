@@ -249,15 +249,6 @@ function gameScreen() {
   fill(255, 240, 229);
   ellipse(350, 770, 1100, 190);
 
-  //flag
-  // stroke(0);
-  // strokeWeight(5);
-  // line(50, 500, 50, 620);
-
-  // strokeWeight(1);
-  // fill(126, 183, 126);
-  // triangle(50, 500, 110, 515, 50, 550);
-
   x = x + speed;
 
   if (isGameActive) {
