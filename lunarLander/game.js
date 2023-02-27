@@ -1,3 +1,8 @@
+function setup() {
+  createCanvas(700, 675);
+  frameRate(30);
+}
+
 // landing goal
 function landingGoal(x, y, s) {
   push();
@@ -157,8 +162,8 @@ let starY = [];
 let starAlpha = [];
 
 for (let i = 0; i < 500; i++) {
-  const x = Math.floor(Math.random() * width);
-  const y = Math.floor(Math.random() * height);
+  const x = Math.floor(Math.random() * 700);
+  const y = Math.floor(Math.random() * 675);
   const alpha = Math.random();
 
   starX.push(x);
