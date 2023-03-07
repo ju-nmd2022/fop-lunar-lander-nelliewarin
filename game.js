@@ -157,6 +157,7 @@ function fire(fireX, fireY, fireS) {
   pop();
 }
 
+//The following 7 lines of code (161 - 172) is retrived from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example 02.15.23
 let starX = [];
 let starY = [];
 let starAlpha = [];
@@ -196,7 +197,7 @@ function playAgainButton(x, y, w, h) {
 function startScreen() {
   background(25, 52, 65);
   noStroke();
-
+//The following 4 lines of code (201 - 204) is retrived from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example 02.15.23
   for (let index in starX) {
     fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
     ellipse(starX[index], starY[index], 2);
@@ -224,6 +225,7 @@ function gameScreen() {
   noStroke();
   background(25, 52, 65);
 
+//The following 4 lines of code (229 - 232) is retrived from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example 02.15.23
   for (let index in starX) {
     fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
     ellipse(starX[index], starY[index], 2);
@@ -295,6 +297,7 @@ function gameScreen() {
 function looseResultScreen() {
   background(25, 52, 65);
 
+//The following 4 lines of code (301 - 204) is retrived from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example 02.15.23
   for (let index in starX) {
     fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
     ellipse(starX[index], starY[index], 2);
@@ -328,6 +331,7 @@ function winResultScreen() {
   noStroke();
   background(25, 52, 65);
 
+//The following 4 lines of code (334 - 338) is retrived from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example 02.15.23
   for (let index in starX) {
     fill(255, 255, 255, Math.abs(Math.sin(starAlpha[index])) * 255);
     ellipse(starX[index], starY[index], 2);
