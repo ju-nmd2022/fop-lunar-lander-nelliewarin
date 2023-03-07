@@ -157,7 +157,7 @@ function fire(fireX, fireY, fireS) {
   pop();
 }
 
-//The following 7 lines of code (161 - 172) is retrived from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example 02.15.23
+//The following 10 lines of code (161 - 172) is retrived from https://pixelkind.github.io/foundationsofprogramming//programming/15-07-example 02.15.23
 let starX = [];
 let starY = [];
 let starAlpha = [];
